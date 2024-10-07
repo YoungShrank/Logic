@@ -1,0 +1,4 @@
+    Union  &  λ A : Set[Set,], . { x : Math | ∃ a : A , x ∈ a }
+    Insect  & λ A : Set[Set,], .  { x: Math | ∀ a : A , x ∈ a }
+    Subset  & λ A : Set, B : Set, .   ∀ a :A, a ∈ B 
+    Power  & λ A : Set, .  { x : Set |  Subset (x,A,) }

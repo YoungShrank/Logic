@@ -1,0 +1,8 @@
+ID A_ LEFT
+LEFT A_1 LEFT
+LEFT
+A_1 A_
+A_1 1
+A_ A
+A_ _
+

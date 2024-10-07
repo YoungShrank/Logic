@@ -1,0 +1,2 @@
+theorem ∀ x :N,  (ADD ((ADD (x,_0,)),_0,)) = x
+any x : N,
