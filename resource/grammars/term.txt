@@ -1,0 +1,21 @@
+<term> <id>
+<term> <tuple>
+<term> <set>
+<term> <fun> ( <term> )
+
+
+<term> ( <term> )
+<tuple> ( <list> )
+<set> { <list> }
+<list> <term> ,
+<list> <list> <term> ,
+
+<term> ¬  <term>
+<term> <term> -> <term>
+<term> <term> ∨ <term>
+<term> <term> ∧ <term>
+<term> <term> <-> <term>
+<term> ∀ <id> : <type> , <term>
+<term> ∃ <id> : <type> , <term>
+
+<type> <id>

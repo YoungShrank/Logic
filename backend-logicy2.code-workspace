@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "D:/WorkPlace/github"
+		}
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			   "D:/WorkPlace/github",
+			   "D:/WorkPlace/github/backend_logic_y2/resource/"
+			],
+			"python.analysis.extraPaths": [
+			   "D:/WorkPlace/github",
+			   "D:/WorkPlace/github/backend_logic_y2/resource/"
+			]
+	}
+}

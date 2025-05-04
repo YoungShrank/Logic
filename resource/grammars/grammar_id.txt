@@ -1,0 +1,7 @@
+c_  c
+c_  _ 
+C c_
+C C c_
+N 
+N N n
+ID C N

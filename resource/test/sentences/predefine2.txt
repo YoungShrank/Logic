@@ -1,0 +1,10 @@
+assert
+one Union := λ A : Set[Set,], . { x : Math | ∃ a : A , x ∈ a } 
+one Insect := λ A : Set[Set,], .  { x: Math | ∀ a : A , x ∈ a } 
+one Subset := λ A : Set, B : Set, .   ∀ a :A, a ∈ B 
+one Power := λ A : Set, .  { x : Set |  Subset (x,A,) }
+one N : Set,
+one ADD : Func[Tuple[N,N,],N,],
+one _0 : N,
+∀ x :N,  (ADD (x,_0,)) = x
+;

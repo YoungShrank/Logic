@@ -1,0 +1,73 @@
+<line> <term>
+<line> <declare>
+<line> <assert>
+<line> <theorem>
+<line> <proof>
+<line> <qed>
+<line> <assign>
+<line> <end>
+<line> <assume> 
+
+<assume> assume <term>
+
+
+
+<declare> any <varT_list>
+<declare> one <varT_list>
+<assign> one <var> := <term>
+
+<assert> assert
+<end> ;
+
+
+<theorem> theorem <term>
+<theorem> lemma <term>
+<proof> proof
+<qed> qed
+
+
+
+<term> <var>
+<term> <tuple>
+<term> <set>
+<term> <func>
+<term> <term> <term>
+
+<term> ( <term> )
+
+<func> λ <varT_list> . <term>
+
+<tuple> ( <term_list> )
+
+<set> { <term_list> }
+<set> { <term> | <varT_list> | <term> }
+<set> { <varT> | <term> }
+
+
+
+<term_list> <term> ,
+<term_list> <term_list> <term> ,
+
+
+<varT> <var> : <type>
+<varT_list> <varT> ,
+<varT_list> <varT_list> <varT> ,
+
+<term> ¬  <term>
+<term> <term> -> <term>
+<term> <term> ∨ <term>
+<term> <term> ∧ <term>
+<term> <term> <-> <term>
+<term> ∀ <varT_list> <term>
+<term> ∃ <varT_list> <term>
+
+<term> <term> = <term>
+<term> <term> ∈ <term>
+<term> <varT>
+
+<type> <var>
+<type_list> <type> ,
+<type_list> <type_list> <type> ,
+<type> <var> [ <type_list> ]
+
+

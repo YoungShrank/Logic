@@ -1,0 +1,30 @@
+one R : Set, ADD : Set ,
+
+one _1 :R, _0 : R,
+
+
+
+∀ x : ADD , ∃ a :R, b : R, c :R , x = ((a, b,), c,)
+∀ x : ADD , x : tuple[tuple[R, R,], R,]
+
+∀ a :R, b : R, ∃ c :R , ((a, b,), c,) ∈ ADD 
+
+∀ a :R, ((a, _0,), a,) ∈ ADD 
+
+{(a, b,) | a:R, b:R, |a = a} 
+
+{a:R |a = a} 
+
+{x : Set |  ∀ a:x, a ∈ R }
+
+one COL : Set[Set[R,],],
+
+{x : M | ∃ y : COL, x ∈ y  }
+
+{x : M | ∀ y : COL, x ∈ y  }
+
+
+
+
+
+

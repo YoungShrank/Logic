@@ -1,0 +1,36 @@
+<term> <var>
+<term> <tuple>
+<term> <set>
+<term> <func>
+<term> <term> <term>
+
+<term> ( <term> )
+
+<func> λ <varT_list> . <term>
+
+<tuple> ( <term_list> )
+
+<set> { <term_list> }
+<set> { <term> | <term> }
+
+
+
+<term_list> <term> ,
+<term_list> <term_list> <term> ,
+
+
+<varT> <var> : <type>
+<varT_list> <varT> ,
+<varT_list> <varT_list> <varT> ,
+
+<term> ¬  <term>
+<term> <term> -> <term>
+<term> <term> ∨ <term>
+<term> <term> ∧ <term>
+<term> <term> <-> <term>
+<term> ∀ <varT_list> <term>
+<term> ∃ <varT_list> <term>
+
+<type> <var>
+
+

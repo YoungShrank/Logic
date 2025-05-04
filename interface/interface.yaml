@@ -1,0 +1,425 @@
+openapi: 3.0.0
+info:
+  title: logic deduction API
+  description: |
+    这是辅助推理机的接口定定义,参考https://openapi.apifox.cn/
+  version: 1.0.0
+tags:
+  - name: logic deduction
+    description: 逻辑推理相关接口
+paths:
+  /deduce:
+    post:
+      tags:
+        - logic deduction
+      summary: 逻辑推理
+      description: |
+        逻辑推理接口,用于进行逻辑推理的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                presumptions:
+                  type: string
+                  description: 前提条件(局部结论)的id
+                rule:
+                  type: string
+                  description: 推理规则的id
+                name_instance:
+                  type: object
+                  description: "{占位名 : 项实例id}"
+              required:
+                - presumptions
+                - rule
+                - name_instance
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /instance:
+    post:
+      tags:
+        - logic deduction
+      summary: 量词消去
+      description: |
+        处理量词逻辑中，用于消去量词的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                name_instance:
+                  type: object
+                  description: "{约束变元名 : 项实例id}"
+              required:
+                - conclusion_id
+                - name_instance
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /introduce:
+    post:
+      tags:
+        - logic deduction
+      summary: 量词引入
+      description: |
+        处理量词逻辑中，用于引入量词的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                quantifier:
+                  type: string
+                  description: 量词类型(exist/all/∃/∀)
+                free_bound:
+                  type: object
+                  description: "{ 自由变元名 : 引入的约束变元名}"
+              required:
+                - conclusion_id
+                - quantifier
+                - free_bound
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /select:
+    post:
+      tags:
+        - logic deduction
+      summary: 选择辅助项
+      description: |
+        从局部结论中选择子项作为辅助项的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                first:
+                  type: string
+                  description: 子项起始位置
+                last:
+                  type: string
+                  description: 子项结束位置
+                name:
+                  type: string
+                  description: 辅助项名称
+              required:
+                - conclusion_id
+                - first
+                - last
+                - name
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /use:
+    post:
+      tags:
+        - logic deduction
+      summary: 引入假设/定理公理
+      description: |
+        将假设/定理公理引入到当前推理过程，作为局部结论的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assume_or_axiom:
+                  type: string
+                  description: 类型(assume/axiom)
+                index:
+                  type: string
+                  description: 假设/定理公理的索引
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /qed:
+    post:
+      tags:
+        - logic deduction
+      summary: 结束推理
+      description: |
+        结束当前推理过程的请求.
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /bra:
+    post:
+      tags:
+        - logic deduction
+      summary: 添/去括号
+      description: |
+        对局部结论进行添/去括号生成等价局部结论 的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                off_on:
+                  type: string
+                  description: 添/去括号的类型(on/off)
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                first:
+                  type: string
+                  description: 子项起始位置
+                last:
+                  type: string
+                  description: 子项结束位置
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /conclude:
+    post:
+      tags:
+        - logic deduction
+      summary: 假设归结
+      description: |
+        将{ass1, ass2, ...}|- conclustion[-1] 归结为 
+        {} |- ass1^ass2^...-> conclustion[-1](conclustion为结论区最后一个结论)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assumption_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: 假设id列表
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /eqrepl:
+    post:
+      tags:
+        - logic deduction
+      summary: 等式替换
+      description: |
+        基于等式，将局部结论中的项进行替换的请求.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                equal_id:
+                  type: string
+                  description: 等式id
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                first:
+                  type: string
+                  description: 子项起始位置
+                last:
+                  type: string
+                  description: 子项结束位置
+                old_side:
+                  type: string
+                  description: 被替换项所在等式侧(left/right)
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /write_line:
+    post:
+      tags:
+        - logic deduction
+      summary: 写入用户命令
+      description: |
+        写入用户命令，如定义变量、声明公理、假设、开始证明等。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expression:
+                  type: string
+                  description: 用户命令
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum:
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /read:
+    post:
+      tags:
+        - logic deduction
+      summary: 读取环境信息
+      description: |
+        读取环境信息，如变量、定理、公理、假设等。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: string
+                    enum: ["LN","TH","AX","TS","LC","GL","CC","AS","MD","TM", "RL"]
+                  description: 需要读取的项列表，如果空，则读取所有项
+                  
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                enum: 
+                  - "Proof"
+                  - "Assert"
+                  - "Global"
+                description: 当前推理模式
+  /cp2tp:
+    post:
+      tags:
+        - char_pos_to_token_pos
+      summary: 字符位置转token位置
+      description: |
+        字符位置转token位置的请求
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conclusion_id:
+                  type: string
+                  description: 局部结论id
+                first:
+                  type: string
+                  description: 子项起始位置(字符位置)
+                last:
+                  type: string
+                  description: 子项结束位置(字符位置)
+                text:
+                  type: string
+                  description: 局部结论文本
+      responses:
+        '200':
+          description: 成功响应
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first:
+                    type: integer
+                    description: 起始tocken下标
+                  last:
+                    type: integer
+                    description: 结束tocken下标
+                  cfirst:
+                    type: integer
+                    description: 起始字符下标
+                  clast:
+                    type: integer
+                    description: 结束字符下标
