@@ -13,9 +13,10 @@ class GUILogicY1:
         - rules_path : 推理规则文件路径
         - predefine_path : 预定义输入文件路径
         """
-        grammer_path = r"D:\WorkPlace\Pathon_WorkPlace\compile\grammars\line.txt"
-        rules_path = r"D:\WorkPlace\Pathon_WorkPlace\compile\semantic\rules.txt"
-        predefine_path = r"D:\WorkPlace\Pathon_WorkPlace\compile\test\sentences\predefine2.txt"
+        from resource_service import ResourceService
+        grammer_path = ResourceService.get("grammars/line.txt")
+        rules_path = ResourceService.get("first-order/rules.txt")
+        predefine_path = ResourceService.get("test/sentences/predefine2.txt")
         self.logic_api = LogicApi(grammer_path, rules_path, predefine_path)
         
 
