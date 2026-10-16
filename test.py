@@ -29,6 +29,7 @@ from semantic.convert import test_fillin as test_convert_fillin
 from semantic.line import test_analyzer as test_line_analyzer
 from semantic.line import test_term_parser as test_line_term_parser
 from interface.logic_flask import run as run_logic_flask
+from semantic.domain import test as test_domain
 #test_line_analyzer()
 from grammar import test as test_grammar
 run_logic_flask()
