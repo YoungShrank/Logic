@@ -31,20 +31,19 @@
 
   + 工程层
       // 开发活动流程相关，非运行态，服务于迭代而非产品本身
-    + 缺陷层
-        // 已知故障的记录与复现
+    + 问题记录层
+        // 开发中发现的问题（含缺陷）的记录、定位与验证
       + 代码元素
-        + backend_logic_y2_1\bugs\copy_tree.md       // 树复制（copy_subtree）
-        + backend_logic_y2_1\bugs\import_order.md    // 模块导入顺序
-        + backend_logic_y2_1\bugs\test_deduce.md     // 演绎推理
-        + backend_logic_y2_1\bugs\  ...              // 各分支同构共享
-    + 需求层
-        // 需求/问题描述与设计推演
+        + backend_logic_y2_1\dev\issues\             // template.md；历史 bugs/issues 见 git 记录
+    + 开发请求层
+        // 需求与 bugfix 请求的描述、设计推演
       + 代码元素
-        + backend_logic_y2_1\issues\                 // applying_rules, bracket, introduce_quantifier,
-                                                     //   static_analyze_term, switcher_function, inplace_substitue ...
-        + backend_logic_y2_1\dev\request             // 开发请求（template.md）
-        + backend_logic_y2_1\dev\modeling            // 建模文档（本文件所在层）
+        + backend_logic_y2_1\dev\request\            // template.md；bugfix\template.md
+    + 建模层
+        // 项目全景与后端建模，增量开发取上下文的入口
+      + 代码元素
+        + backend_logic_y2_1\dev\modeling\           // architecture_code_graph.md（本文件）
+                                                     //   backend_logic_y2_1_modeling.md
     + 设计文档层
       + 代码元素
         + backend_logic_y2\docs\backend-logic-y2-topview.md  // 系统总览设计文档（逆向生成）
@@ -279,5 +278,5 @@ abtree.ABTree  <|-- Structure\tree.Tree
 - 加“解析/文法”特性 → 看 解析层（`grammar.py`/`lrparser.py`/`words.py`/`line.py`）+ 资源层`grammars`。
 - 加“推理操作” → 看 应用服务层`logic_api.py` + 转换层`convert.py` + 环境层`context.py` + `interface.yaml`/`logic_flask.py`。
 - 加“类型推断” → 看 `sort.py` + `line.py:TermAnalyzer` + 环境层`Var`。
-- 加“作用域/假设域” → 看 `domain.py` + `README.md` + `issues\applying_rules.md`。
+- 加“作用域/假设域” → 看 `domain.py` + `README.md`（历史讨论 `issues\applying_rules.md` 见 git 记录）。
 ```
